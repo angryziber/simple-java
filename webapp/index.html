@@ -1,5 +1,76 @@
+<!DOCTYPE html>
 <html>
-<body>
-<h1>Hello!</h1>
-</body>
+    <head>
+        <title>Photo Spots</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-family: Helvetica;
+                font-size: 13px;
+                overflow: hidden;
+            }
+            #header {
+                width: 100%;
+                text-align: center;
+                background-color: black;
+                color: white;
+                padding: 5px 0;
+            }
+            #header h1 {
+                margin: 0;
+            }
+            #map {
+                height: 100%;
+            }
+        </style>
+
+        <script type="text/javascript">
+            var infoWindow = new google.maps.InfoWindow();
+            $(function() {
+                $('#content').height($(document).height() - $('#header').outerHeight());
+
+                detectLocation(locationCallback);
+            });
+
+            function detectLocation(callback) {
+                navigator.geolocation.getCurrentPosition(
+                    callback,
+                    function(error) {
+                        alert('geolocation failed: ' + error.code);
+                    }
+                );
+            }
+
+            function locationCallback(location) {
+                var latLng = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+                map = new google.maps.Map(document.getElementById('map'), {
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    center: latLng,
+                    zoom: 10
+                });
+            }
+
+            function toLatLng(hub) {
+                return new google.maps.LatLng(hub.location.latitude, hub.location.longitude);
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="container">
+            <div id="header">
+                <h1>Great Photo Spots</h1>
+            </div>
+
+            <div id="content">
+                <div id="map">Detecting location...</div>
+            </div>
+        </div>
+    </body>
 </html>
