@@ -2,23 +2,25 @@ package ee.devclub.rest;
 
 import ee.devclub.model.Location;
 import ee.devclub.model.PhotoSpot;
+import ee.devclub.model.PhotoSpotService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
 @Path("photo-spots")
 @Produces("application/json")
-public class PhotoSpotResource {
+public class PhotoSpotResource extends SpringAwareResource {
+    @Autowired PhotoSpotService service;
+
     @GET
     public List<PhotoSpot> getAllSpots() {
-        return asList(new PhotoSpot("Kohtuotsa vaateplatvorm", "", new Location(59.437755f, 24.74209f)));
+        return service.getAllSpots();
     }
 
     @POST
     public PhotoSpot newPhotoSpot(@FormParam("name") String name, @FormParam("description") String description,
                                   @FormParam("lat") float lat, @FormParam("lon") float lon) {
-        return new PhotoSpot(name, description, new Location(lat, lon));
+        return service.persist(new PhotoSpot(name, description, new Location(lat, lon)));
     }
 }

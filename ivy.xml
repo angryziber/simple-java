@@ -13,6 +13,9 @@
       <dependency org="org.eclipse.jetty" name="jetty-server" rev="8.0+"/>
       <dependency org="org.eclipse.jetty" name="jetty-webapp" rev="8.0+"/>
 
+      <dependency org="org.springframework" name="spring-beans" rev="3.0+"/>
+      <dependency org="org.springframework" name="spring-web" rev="3.0+"/>
+
       <dependency org="com.sun.jersey" name="jersey-core" rev="1.8"/>
       <dependency org="com.sun.jersey" name="jersey-server" rev="1.8"/>
       <dependency org="com.sun.jersey" name="jersey-json" rev="1.8"/>
