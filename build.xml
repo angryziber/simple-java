@@ -1,0 +1,22 @@
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="devclub-simple-java" default="fetch-jars">
+
+    <property name="ivy.version" value="2.2.0"/>
+
+    <!--<target name="resolve">-->
+        <!--<ivy:resolve file="my-ivy.xml" conf="default, test"/>-->
+    <!--</target>-->
+
+    <target name="fetch-jars" depends="install-ivy">
+        <ivy:retrieve pattern="lib/[artifact]-[revision].[ext]" symlink="true"/>
+    </target>
+
+    <target name="install-ivy">
+        <mkdir dir="lib"/>
+        <get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar" dest="lib/ivy.jar" usetimestamp="true"/>
+        <path id="ivy.lib.path">
+            <fileset dir="lib" includes="*.jar"/>
+        </path>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+    </target>
+
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ivy-module version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+  <info organisation="devclub" module="simple-java"/>
+
+  <configurations>
+    <conf name="default" description="for runtime"/>
+    <conf name="compile"/>
+    <conf name="test"/>
+    <conf name="devel"/>
+  </configurations>
+
+  <dependencies defaultconf="default->default">
+      <dependency org="org.eclipse.jetty" name="jetty-server" rev="8.0+"/>
+
+      <dependency org="junit" name="junit" rev="4.8+" conf="test->default"/>
+      <dependency org="org.mockito" name="mockito-all" rev="1.8.5" conf="test->default"/>
+  </dependencies>
+</ivy-module>
