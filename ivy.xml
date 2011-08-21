@@ -11,6 +11,7 @@
 
   <dependencies defaultconf="default->default">
       <dependency org="org.eclipse.jetty" name="jetty-server" rev="8.0+"/>
+      <dependency org="org.eclipse.jetty" name="jetty-webapp" rev="8.0+"/>
 
       <dependency org="junit" name="junit" rev="4.8+" conf="test->default"/>
       <dependency org="org.mockito" name="mockito-all" rev="1.8.5" conf="test->default"/>
