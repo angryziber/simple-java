@@ -2,50 +2,17 @@
 <html>
     <head>
         <title>Photo Spots</title>
+        <style type="text/css">@import url(map.css);</style>
+
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
-        <style type="text/css">
-            * {
-                margin: 0;
-                padding: 0;
-            }
-            body {
-                font-family: Helvetica;
-                font-size: 13px;
-                overflow: hidden;
-            }
-            #header {
-                width: 100%;
-                text-align: center;
-                background-color: black;
-                color: white;
-                padding: 5px 0;
-            }
-            #header h1 {
-                margin: 0;
-            }
-            #map {
-                height: 100%;
-            }
-        </style>
-
+        <script type="text/javascript" src="common.js"></script>
         <script type="text/javascript">
             var infoWindow = new google.maps.InfoWindow();
             $(function() {
                 $('#content').height($(document).height() - $('#header').outerHeight());
-
                 detectLocation(locationCallback);
             });
-
-            function detectLocation(callback) {
-                navigator.geolocation.getCurrentPosition(
-                    callback,
-                    function(error) {
-                        alert('geolocation failed: ' + error.code);
-                    }
-                );
-            }
 
             function locationCallback(location) {
                 var latLng = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
@@ -54,6 +21,16 @@
                     center: latLng,
                     zoom: 10
                 });
+
+                $.get('/rest/photo-spots', function(spots) {
+                    for (var i in spots) {
+                        addMarker(spots[i]);
+                    }
+                });
+            }
+
+            function addMarker(spot) {
+                spot.marker = new google.maps.Marker({position: toLatLng(spot), map: map, title: spot.name});
             }
 
             function toLatLng(hub) {
