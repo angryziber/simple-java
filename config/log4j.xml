@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <appender name="general" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="logs/general.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy.MM.dd HH:mm:ss,SSS} [%t] %-5p %c{1} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="request" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="logs/request.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy.MM.dd HH:mm:ss,SSS} [%t] %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="general-console" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] %-5p %c{1} - %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="requestLogger" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="request"/>
+    </logger>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="general-console"/>
+        <appender-ref ref="general"/>
+    </root>
+
+</log4j:configuration>
