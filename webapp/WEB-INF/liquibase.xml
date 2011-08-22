@@ -1,0 +1,15 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="20110823" author="Codeborne">
+        <createTable tableName="PhotoSpot">
+            <column name="id" type="integer" autoIncrement="true"><constraints primaryKey="true"/></column>
+            <column name="name" type="char(200)"/>
+            <column name="description" type="text"/>
+            <column name="lat" type="float"/>
+            <column name="lon" type="float"/>
+            <column name="createdAt" type="timestamp" defaultValueComputed="now()"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

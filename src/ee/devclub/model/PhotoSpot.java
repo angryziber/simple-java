@@ -1,6 +1,7 @@
 package ee.devclub.model;
 
 public class PhotoSpot {
+    Long id;
     String name;
     String description;
     Location location;
