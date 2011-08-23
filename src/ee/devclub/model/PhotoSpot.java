@@ -1,13 +1,22 @@
 package ee.devclub.model;
 
+import javax.persistence.*;
+
+@Entity @Access(AccessType.FIELD)
 public class PhotoSpot {
-    Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id Long id;
+
     String name;
     String description;
     Location location;
 
+    PhotoSpot() {
+    }
+
     public PhotoSpot(String name, String description, Location location) {
         this.name = name;
+        this.description = description;
         this.location = location;
     }
 

@@ -11,7 +11,7 @@
                 <Set name="url">jdbc:h2:~/.devclub-java/db;AUTO_SERVER=TRUE;USER=devclub;PASSWORD=devclub</Set>
                 <Set name="maxActive">5</Set>
                 <Set name="maxIdle">5</Set>
-                <Set name="defaultAutoCommit">false</Set>
+                <Set name="defaultAutoCommit">true</Set>
             </New>
         </Arg>
     </New>

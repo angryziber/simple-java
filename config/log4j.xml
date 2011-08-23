@@ -27,6 +27,10 @@
         <appender-ref ref="request"/>
     </logger>
 
+    <logger name="org.hibernate.SQL">
+        <level value="DEBUG"/>
+    </logger>
+
     <root>
         <level value="INFO"/>
         <appender-ref ref="general-console"/>
