@@ -13,6 +13,10 @@
       <dependency org="org.eclipse.jetty" name="jetty-server" rev="8.0+"/>
       <dependency org="org.eclipse.jetty" name="jetty-webapp" rev="8.0+"/>
 
+      <dependency org="com.sun.jersey" name="jersey-core" rev="1.8"/>
+      <dependency org="com.sun.jersey" name="jersey-server" rev="1.8"/>
+      <dependency org="com.sun.jersey" name="jersey-json" rev="1.8"/>
+
       <dependency org="junit" name="junit" rev="4.8+" conf="test->default"/>
       <dependency org="org.mockito" name="mockito-all" rev="1.8.5" conf="test->default"/>
 
