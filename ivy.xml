@@ -15,5 +15,9 @@
 
       <dependency org="junit" name="junit" rev="4.8+" conf="test->default"/>
       <dependency org="org.mockito" name="mockito-all" rev="1.8.5" conf="test->default"/>
+
+      <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.1"/>
+      <dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.6.1"/>
+      <dependency org="org.slf4j" name="jul-to-slf4j" rev="1.6.1"/>
   </dependencies>
 </ivy-module>
