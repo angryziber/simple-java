@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Helvetica;
+    font-size: 13px;
+    overflow: hidden;
+}
+#header {
+    width: 100%;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 5px 0;
+}
+#header h1 {
+    margin: 0;
+}
+#map {
+    height: 100%;
+}
