@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure id="wac" class="org.eclipse.jetty.webapp.WebAppContext">
+    <Set name="contextPath">/</Set>
+
+    <New id="dataSource" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/ds</Arg>
+        <Arg>
+            <New class="org.apache.commons.dbcp.BasicDataSource">
+                <Set name="testOnBorrow">true</Set>
+                <Set name="url">jdbc:h2:~/.devclub-java/db;AUTO_SERVER=TRUE;USER=devclub;PASSWORD=devclub</Set>
+                <Set name="maxActive">5</Set>
+                <Set name="maxIdle">5</Set>
+                <Set name="defaultAutoCommit">false</Set>
+            </New>
+        </Arg>
+    </New>
+
+    <Call class="org.eclipse.jetty.util.log.Log" name="info">
+        <Arg>Processed jetty-web.xml</Arg>
+    </Call>
+</Configure>

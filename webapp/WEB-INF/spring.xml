@@ -6,4 +6,15 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="ee.devclub"/>
+
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/ds"/>
+    </bean>
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="changeLog" value="WEB-INF/liquibase.xml"/>
+        <property name="contexts" value="test, production"/>
+    </bean>
+
 </beans>
