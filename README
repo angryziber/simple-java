@@ -1,1 +1,33 @@
-This project has some branches that can be merged into your project to add skeleton stuff.
+This is a skeleton project for a Java webapp, done right.
+
+It includes:
+- Ant & Ivy for dependency management
+- Jersey for handling of http requests in a RESTful way
+- Spring for dependency injection in the code
+- H2 database (Windows users may need to edit jetty-web.xml)
+- Liquibase for DB migration
+- Hibernate for working with the DB
+- JUnit & Mockito for unit testing
+
+After cloning, run src/Launcher.java to start. Everything is preconfigured.
+
+Small amount of code it contains implements a simple database of good Photo Spots,
+which uses google maps to browse and edit them.
+
+Or you can follow how this all have been created by pulling various branches
+into your own branch in this order:
+- ivy
+- launcher
+- map
+- web.xml
+- logging
+- jersey
+- map-with-spots
+- add-spot
+- spring
+- db
+- hibernate
+- tests
+
+See related talk from GOTOCon and Devclub here:
+http://www.slideshare.net/antonkeks/simplicity-8971441
