@@ -12,19 +12,19 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class PhotoSpotServiceTest {
-    PhotoSpotService service = new PhotoSpotService();
+public class PhotoSpotRepositoryTest {
+    PhotoSpotRepository repo = new PhotoSpotRepository();
 
     @Before
-    public void setUp() throws Exception {
-        service.hibernate = mock(HibernateOperations.class);
+    public void initMocks() throws Exception {
+        repo.hibernate = mock(HibernateOperations.class);
     }
 
     @Test
     public void allPhotoSpotsComeFromDB() throws Exception {
-        when(service.hibernate.loadAll(PhotoSpot.class)).thenReturn(asList(new PhotoSpot("Kohtuotsa", "", new Location(59.437755f, 24.74209f))));
+        when(repo.hibernate.loadAll(PhotoSpot.class)).thenReturn(asList(new PhotoSpot("Kohtuotsa", "", new Location(59.437755f, 24.74209f))));
 
-        List<PhotoSpot> spots = service.getAllSpots();
+        List<PhotoSpot> spots = repo.getAllSpots();
         assertThat(spots.size(), is(1));
         assertThat(spots.get(0).name, is("Kohtuotsa"));
     }

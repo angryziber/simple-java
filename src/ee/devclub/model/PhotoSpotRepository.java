@@ -2,14 +2,12 @@ package ee.devclub.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateOperations;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
-@Service
-public class PhotoSpotService {
+@Repository
+public class PhotoSpotRepository {
     @Autowired HibernateOperations hibernate;
 
     public List<PhotoSpot> getAllSpots() {
