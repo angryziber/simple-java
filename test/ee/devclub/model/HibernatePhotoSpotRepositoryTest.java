@@ -12,8 +12,8 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class PhotoSpotRepositoryTest {
-    PhotoSpotRepository repo = new PhotoSpotRepository();
+public class HibernatePhotoSpotRepositoryTest {
+    HibernatePhotoSpotRepository repo = new HibernatePhotoSpotRepository();
 
     @Before
     public void initMocks() throws Exception {
