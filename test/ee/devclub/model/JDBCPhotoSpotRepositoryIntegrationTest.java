@@ -1,5 +1,6 @@
 package ee.devclub.model;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -17,7 +18,7 @@ public class JDBCPhotoSpotRepositoryIntegrationTest {
     JDBCPhotoSpotRepository repo = new JDBCPhotoSpotRepository();
 
     @Before
-    public void setUp() throws Exception {
+    public void initMockDB() throws Exception {
         dataSource = new DriverManagerDataSource("jdbc:h2:mem:test", "sa", "sa");
         conn = dataSource.getConnection();
 
@@ -25,6 +26,11 @@ public class JDBCPhotoSpotRepositoryIntegrationTest {
         conn.createStatement().execute("insert into PhotoSpot values (1, 'Kohtuotsa', 'Mega place!', 59.437755, 24.74209)");
 
         repo.dataSource = dataSource;
+    }
+
+    @After
+    public void destroyMockDB() throws Exception {
+        conn.close();
     }
 
     @Test

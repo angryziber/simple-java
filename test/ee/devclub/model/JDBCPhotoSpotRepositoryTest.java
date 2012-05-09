@@ -12,16 +12,16 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class JDBCPhotoSpotRepositoryTest {
-    JDBCPhotoSpotRepository repository = new JDBCPhotoSpotRepository();
+    JDBCPhotoSpotRepository repo = new JDBCPhotoSpotRepository();
 
     @Before
     public void setUp() throws Exception {
-        repository.dataSource = mock(DataSource.class, RETURNS_DEEP_STUBS);
+        repo.dataSource = mock(DataSource.class, RETURNS_DEEP_STUBS);
     }
 
     @Test
     public void spotFieldsAreCorrectlyMappedToDBColumns() throws Exception {
-        ResultSet rs = repository.dataSource.getConnection().prepareStatement("select * from PhotoSpot").executeQuery();
+        ResultSet rs = repo.dataSource.getConnection().prepareStatement("select * from PhotoSpot").executeQuery();
         when(rs.next()).thenReturn(true, false);
 
         when(rs.getString("name")).thenReturn("Kohtuotsa");
@@ -29,7 +29,7 @@ public class JDBCPhotoSpotRepositoryTest {
         when(rs.getFloat("latitude")).thenReturn(59.437755f);
         when(rs.getFloat("longitude")).thenReturn(24.74209f);
 
-        List<PhotoSpot> spots = repository.getAllSpots();
+        List<PhotoSpot> spots = repo.getAllSpots();
 
         assertEquals(1, spots.size());
         PhotoSpot spot = spots.get(0);
@@ -38,13 +38,13 @@ public class JDBCPhotoSpotRepositoryTest {
         assertThat(spot.description, is("Mega place!"));
         assertThat(spot.location, is(new Location(59.437755f, 24.74209f)));
 
-        verify(repository.dataSource.getConnection()).close();
+        verify(repo.dataSource.getConnection()).close();
     }
 
     @Test
     public void manySpotFieldsCanBeLoaded() throws Exception {
-        ResultSet rs = repository.dataSource.getConnection().prepareStatement("select * from PhotoSpot").executeQuery();
+        ResultSet rs = repo.dataSource.getConnection().prepareStatement("select * from PhotoSpot").executeQuery();
         when(rs.next()).thenReturn(true, true, true, false);
-        assertThat(repository.getAllSpots().size(), is(3));
+        assertThat(repo.getAllSpots().size(), is(3));
     }
 }
