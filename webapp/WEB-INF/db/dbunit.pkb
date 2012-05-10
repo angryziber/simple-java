@@ -12,14 +12,14 @@ is
 
     procedure assert_equals(expected number, actual number) is
     begin
-        if expected != actual then
+        if expected is null or actual is null or expected != actual then
             fail(expected, actual);
         end if;
     end;
 
     procedure assert_equals(expected varchar2, actual varchar2) is
     begin
-        if expected != actual then
+        if expected is null or actual is null or expected != actual then
             fail(expected, actual);
         end if;
     end;

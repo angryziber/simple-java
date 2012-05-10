@@ -16,4 +16,16 @@
         <sqlFile path="db/dbunit.pkb" endDelimiter="/" relativeToChangelogFile="true"/>
     </changeSet>
 
+    <changeSet id="photo_spots.pkh" author="Codeborne" context="test" dbms="oracle" runOnChange="true">
+        <sqlFile path="db/photo_spots.pkh" endDelimiter="/" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="photo_spots.pkb" author="Codeborne" context="test" dbms="oracle" runOnChange="true">
+        <sqlFile path="db/photo_spots.pkb" endDelimiter="/" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="photo_spots_test" author="Codeborne" context="test" dbms="oracle" runAlways="true">
+        <sqlFile path="db-test/photo_spots_test.sql" endDelimiter="/" relativeToChangelogFile="true"/>
+    </changeSet>
+
 </databaseChangeLog>

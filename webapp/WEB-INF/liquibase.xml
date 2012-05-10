@@ -1,16 +1,14 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-    <include file="liquibase-test.xml" relativeToChangelogFile="true"/>
-
-    <changeSet id="0" author="Codeborne" dbms="oracle">
+    <changeSet id="hibernate_sequence" author="Codeborne" dbms="oracle">
         <createSequence sequenceName="hibernate_sequence"/>
     </changeSet>
 
     <changeSet id="20110823" author="Codeborne">
         <createTable tableName="PhotoSpot">
             <column name="id" type="integer"><constraints primaryKey="true"/></column>
-            <column name="name" type="char(200)"/>
+            <column name="name" type="varchar(200)"/>
             <column name="description" type="text"/>
             <column name="lat" type="float"/>
             <column name="lon" type="float"/>
@@ -31,5 +29,7 @@
             <column name="longitude" value="24.74209"/>
         </insert>
     </changeSet>
+
+    <include file="liquibase-test.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
