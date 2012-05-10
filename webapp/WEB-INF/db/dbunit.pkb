@@ -10,6 +10,11 @@ is
         fail('Expected: ' || expected || chr(10) || 'Actual:   ' || actual);
     end;
 
+    procedure expect_exception is
+    begin
+      fail('Exception expected');
+    end;
+
     procedure assert_equals(expected number, actual number) is
     begin
         if expected is null or actual is null or expected != actual then

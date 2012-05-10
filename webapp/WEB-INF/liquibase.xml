@@ -8,10 +8,10 @@
     <changeSet id="20110823" author="Codeborne">
         <createTable tableName="PhotoSpot">
             <column name="id" type="integer"><constraints primaryKey="true"/></column>
-            <column name="name" type="varchar(200)"/>
+            <column name="name" type="varchar(200) not null"/>
             <column name="description" type="text"/>
-            <column name="lat" type="float"/>
-            <column name="lon" type="float"/>
+            <column name="lat" type="float not null"/>
+            <column name="lon" type="float not null"/>
             <column name="createdAt" type="timestamp" defaultValueComputed="systimestamp"/>
         </createTable>
     </changeSet>

@@ -24,7 +24,13 @@
         <sqlFile path="db/photo_spots.pkb" endDelimiter="/" relativeToChangelogFile="true"/>
     </changeSet>
 
-    <changeSet id="photo_spots_test" author="Codeborne" context="test" dbms="oracle" runAlways="true">
+    <changeSet id="compile" author="Codeborne" dbms="oracle" runAlways="true">
+        <sql endDelimiter="/">
+            begin dbms_utility.compile_schema('demo'); end;
+        </sql>
+    </changeSet>
+
+    <changeSet id="photo_spots_test" author="Codeborne" context="test" dbms="oracle" runOnChange="true" runAlways="true">
         <sqlFile path="db-test/photo_spots_test.sql" endDelimiter="/" relativeToChangelogFile="true"/>
     </changeSet>
 
