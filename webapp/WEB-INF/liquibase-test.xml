@@ -1,0 +1,64 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="dbunit.pkh" author="Codeborne" context="test" dbms="oracle" runOnChange="true">
+        <sql endDelimiter="/">
+            create or replace package dbunit
+            is
+                procedure assert_equals(expected number, actual number);
+                procedure assert_equals(expected varchar2, actual varchar2);
+                procedure assert_null(actual varchar2);
+                procedure assert_not_null(actual varchar2);
+            end;
+            /
+            create or replace public synonym dbunit for dbunit/
+            grant execute on dbunit to public/
+        </sql>
+    </changeSet>
+
+    <changeSet id="dbunit.pkb" author="Codeborne" context="test" dbms="oracle" runOnChange="true">
+        <sql endDelimiter="/">
+            create or replace package body dbunit
+            is
+                procedure fail(message varchar2) is
+                begin
+                    raise_application_error(-20000, 'Assertion failed' || chr(10) || message);
+                end;
+
+                procedure fail(expected varchar2, actual varchar2) is
+                begin
+                    fail('Expected: ' || expected || chr(10) || 'Actual:   ' || actual);
+                end;
+
+                procedure assert_equals(expected number, actual number) is
+                begin
+                    if expected != actual then
+                        fail(expected, actual);
+                    end if;
+                end;
+
+                procedure assert_equals(expected varchar2, actual varchar2) is
+                begin
+                    if expected != actual then
+                        fail(expected, actual);
+                    end if;
+                end;
+
+                procedure assert_null(actual varchar2) is
+                begin
+                    if actual is not null then
+                        fail(actual || ' is not null');
+                    end if;
+                end;
+
+                procedure assert_not_null(actual varchar2) is
+                begin
+                    if actual is null then
+                        fail('argument is null');
+                    end if;
+                end;
+            end;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

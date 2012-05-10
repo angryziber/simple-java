@@ -1,14 +1,20 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
+    <include file="liquibase-test.xml" relativeToChangelogFile="true"/>
+
+    <changeSet id="0" author="Codeborne" dbms="oracle">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+
     <changeSet id="20110823" author="Codeborne">
         <createTable tableName="PhotoSpot">
-            <column name="id" type="integer" autoIncrement="true"><constraints primaryKey="true"/></column>
+            <column name="id" type="integer"><constraints primaryKey="true"/></column>
             <column name="name" type="char(200)"/>
             <column name="description" type="text"/>
             <column name="lat" type="float"/>
             <column name="lon" type="float"/>
-            <column name="createdAt" type="timestamp" defaultValueComputed="now()"/>
+            <column name="createdAt" type="timestamp" defaultValueComputed="systimestamp"/>
         </createTable>
     </changeSet>
 
@@ -19,6 +25,7 @@
 
     <changeSet id="20110823-2" author="Codeborne">
         <insert tableName="PhotoSpot">
+            <column name="id" value="0"/>
             <column name="name" value="Kohtuotsa vaateplatvorm"/>
             <column name="latitude" value="59.437755"/>
             <column name="longitude" value="24.74209"/>

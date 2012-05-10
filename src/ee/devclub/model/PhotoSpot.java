@@ -2,9 +2,12 @@ package ee.devclub.model;
 
 import javax.persistence.*;
 
-@Entity @Access(AccessType.FIELD)
+import static javax.persistence.AccessType.FIELD;
+import static javax.persistence.GenerationType.AUTO;
+
+@Entity @Access(FIELD)
 public class PhotoSpot {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = AUTO)
     @Id Long id;
 
     String name;
