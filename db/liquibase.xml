@@ -5,7 +5,7 @@
         <createSequence sequenceName="hibernate_sequence"/>
     </changeSet>
 
-    <changeSet id="20110823" author="Codeborne">
+    <changeSet id="1" author="Codeborne">
         <createTable tableName="PhotoSpot">
             <column name="id" type="integer"><constraints primaryKey="true"/></column>
             <column name="name" type="varchar(200) not null"/>
@@ -16,16 +16,16 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="20110823-h2" author="Codeborne" dbms="h2">
+    <changeSet id="1-h2" author="Codeborne" dbms="h2">
         <modifyDataType tableName="PhotoSpot" columnName="id" newDataType="integer auto_increment"/>
     </changeSet>
 
-    <changeSet id="20110823-1" author="Codeborne">
+    <changeSet id="2" author="Codeborne">
         <renameColumn tableName="PhotoSpot" oldColumnName="lat" newColumnName="latitude"/>
         <renameColumn tableName="PhotoSpot" oldColumnName="lon" newColumnName="longitude"/>
     </changeSet>
 
-    <changeSet id="20110823-2" author="Codeborne">
+    <changeSet id="3" author="Codeborne">
         <insert tableName="PhotoSpot">
             <column name="id" value="0"/>
             <column name="name" value="Kohtuotsa vaateplatvorm"/>
