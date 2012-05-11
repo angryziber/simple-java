@@ -13,11 +13,15 @@
 
     <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
         <property name="dataSource" ref="dataSource"/>
-        <property name="changeLog" value="WEB-INF/liquibase.xml"/>
-        <property name="contexts" value="test, production"/>
+        <property name="changeLog" value="file:db/liquibase.xml"/>
     </bean>
 
-    <bean id="hibernateSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" depends-on="liquibase">
+    <bean id="liquibaseTest" class="liquibase.integration.spring.SpringLiquibase" depends-on="liquibase">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="changeLog" value="file:db-test/liquibase.xml"/>
+    </bean>
+
+    <bean id="hibernateSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" depends-on="liquibaseTest">
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>

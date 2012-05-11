@@ -30,6 +30,18 @@
         </insert>
     </changeSet>
 
-    <include file="liquibase-test.xml" relativeToChangelogFile="true"/>
+    <changeSet id="photo_spots.pkh" author="Codeborne" context="test" dbms="oracle" runOnChange="true">
+        <sqlFile path="photo_spots.pkh" endDelimiter="/" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="photo_spots.pkb" author="Codeborne" context="test" dbms="oracle" runOnChange="true">
+        <sqlFile path="photo_spots.pkb" endDelimiter="/" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="compile" author="Codeborne" dbms="oracle" runAlways="true">
+        <sql endDelimiter="/">
+            begin dbms_utility.compile_schema('demo'); end;
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>

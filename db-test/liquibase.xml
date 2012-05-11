@@ -1,0 +1,23 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="dbunit.pkh" author="Codeborne" dbms="oracle" runOnChange="true">
+        <sqlFile path="dbunit.pkh" endDelimiter="/" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="dbunit.grants" author="Codeborne" dbms="oracle">
+        <sql>
+            create or replace public synonym dbunit for dbunit;
+            grant execute on dbunit to public;
+        </sql>
+    </changeSet>
+
+    <changeSet id="dbunit.pkb" author="Codeborne" dbms="oracle" runOnChange="true">
+        <sqlFile path="dbunit.pkb" endDelimiter="/" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="photo_spots_test" author="Codeborne" dbms="oracle" runOnChange="true" runAlways="true">
+        <sqlFile path="photo_spots_test.sql" endDelimiter="/" relativeToChangelogFile="true"/>
+    </changeSet>
+
+</databaseChangeLog>
