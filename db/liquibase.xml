@@ -16,6 +16,10 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="20110823-h2" author="Codeborne" dbms="h2">
+        <modifyDataType tableName="PhotoSpot" columnName="id" newDataType="integer auto_increment"/>
+    </changeSet>
+
     <changeSet id="20110823-1" author="Codeborne">
         <renameColumn tableName="PhotoSpot" oldColumnName="lat" newColumnName="latitude"/>
         <renameColumn tableName="PhotoSpot" oldColumnName="lon" newColumnName="longitude"/>
