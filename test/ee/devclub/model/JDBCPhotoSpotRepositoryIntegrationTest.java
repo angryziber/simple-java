@@ -23,7 +23,6 @@ public class JDBCPhotoSpotRepositoryIntegrationTest {
         conn = dataSource.getConnection();
 
         conn.createStatement().execute("create table PhotoSpot (id int auto_increment primary key, name varchar, description varchar, latitude float, longitude float)");
-        conn.createStatement().execute("insert into PhotoSpot values (1, 'Kohtuotsa', 'Mega place!', 59.437755, 24.74209)");
 
         repo.dataSource = dataSource;
     }
@@ -35,6 +34,8 @@ public class JDBCPhotoSpotRepositoryIntegrationTest {
 
     @Test
     public void loading() throws Exception {
+        conn.createStatement().execute("insert into PhotoSpot values (1, 'Kohtuotsa', 'Mega place!', 59.437755, 24.74209)");
+
         List<PhotoSpot> spots = repo.getAllSpots();
         assertThat(spots.size(), is(1));
 
@@ -49,7 +50,7 @@ public class JDBCPhotoSpotRepositoryIntegrationTest {
         PhotoSpot spot = new PhotoSpot("Teletorn", "Tallinn TV Tower", new Location(59.47111f, 24.8875f));
         repo.persist(spot);
 
-        PhotoSpot spot2 = repo.getAllSpots().get(1);
+        PhotoSpot spot2 = repo.getAllSpots().get(0);
         assertThat(spot2, not(sameInstance(spot)));
         assertThat(spot2, equalTo(spot));
     }
