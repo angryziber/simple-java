@@ -28,6 +28,10 @@ into your own branch in this order:
 - db
 - hibernate
 - tests
+- db-testing
 
-See related talk from GOTOCon and Devclub here:
+See related talks from GOTOCon and Devclub here:
 http://www.slideshare.net/antonkeks/simplicity-8971441
+
+And another one about DB testing from Topconf:
+http://prezi.com/kq0ghszq6e-j/3-tales-of-testing-db-enabled-apps/
