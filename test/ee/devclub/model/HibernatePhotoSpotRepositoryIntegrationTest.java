@@ -8,11 +8,10 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class HibernatePhotoSpotRepositoryIntegrationTest {
     DataSource dataSource;
@@ -34,7 +33,8 @@ public class HibernatePhotoSpotRepositoryIntegrationTest {
 
     @Test
     public void loading() throws Exception {
-        dataSource.getConnection().createStatement().execute("insert into PhotoSpot (id, name, description, latitude, longitude) values (1, 'Kohtuotsa', 'Mega place!', 59.437755, 24.74209)");
+        dataSource.getConnection().createStatement()
+            .execute("insert into PhotoSpot (id, name, description, latitude, longitude) values (1, 'Kohtuotsa', 'Mega place!', 59.437755, 24.74209)");
 
         List<PhotoSpot> spots = repo.getAllSpots();
         assertThat(spots.size(), is(1));
