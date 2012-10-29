@@ -1,0 +1,51 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="hibernate_sequence" author="Codeborne" dbms="oracle">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+
+    <changeSet id="1" author="Codeborne">
+        <createTable tableName="PhotoSpot">
+            <column name="id" type="integer"><constraints primaryKey="true"/></column>
+            <column name="name" type="varchar(200) not null"/>
+            <column name="description" type="text"/>
+            <column name="lat" type="float not null"/>
+            <column name="lon" type="float not null"/>
+            <column name="createdAt" type="timestamp" defaultValueComputed="systimestamp"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1-h2" author="Codeborne" dbms="h2">
+        <modifyDataType tableName="PhotoSpot" columnName="id" newDataType="integer auto_increment"/>
+    </changeSet>
+
+    <changeSet id="2" author="Codeborne">
+        <renameColumn tableName="PhotoSpot" oldColumnName="lat" newColumnName="latitude"/>
+        <renameColumn tableName="PhotoSpot" oldColumnName="lon" newColumnName="longitude"/>
+    </changeSet>
+
+    <changeSet id="3" author="Codeborne">
+        <insert tableName="PhotoSpot">
+            <column name="id" value="0"/>
+            <column name="name" value="Kohtuotsa vaateplatvorm"/>
+            <column name="latitude" value="59.437755"/>
+            <column name="longitude" value="24.74209"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="photo_spots.pkh" author="Codeborne" context="test" dbms="oracle" runOnChange="true">
+        <sqlFile path="photo_spots.pkh" endDelimiter="/" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="photo_spots.pkb" author="Codeborne" context="test" dbms="oracle" runOnChange="true">
+        <sqlFile path="photo_spots.pkb" endDelimiter="/" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="compile" author="Codeborne" dbms="oracle" runAlways="true">
+        <sql endDelimiter="/">
+            begin dbms_utility.compile_schema('demo'); end;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

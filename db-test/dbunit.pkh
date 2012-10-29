@@ -1,0 +1,9 @@
+create or replace package dbunit
+is
+    procedure fail(message varchar2 default '');
+    procedure expect_exception;
+    procedure assert_equals(expected number, actual number);
+    procedure assert_equals(expected varchar2, actual varchar2);
+    procedure assert_null(actual varchar2);
+    procedure assert_not_null(actual varchar2);
+end;

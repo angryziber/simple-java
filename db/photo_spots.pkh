@@ -1,0 +1,5 @@
+create or replace package photo_spots is
+  illegal_coordinates exception;
+
+  function add(name varchar2, description varchar2, lat float, lon float) return number;
+end;

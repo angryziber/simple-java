@@ -9,6 +9,7 @@
             <New class="org.apache.commons.dbcp.BasicDataSource">
                 <Set name="testOnBorrow">true</Set>
                 <Set name="url">jdbc:h2:.simple-java;AUTO_SERVER=TRUE;USER=sa;PASSWORD=sa</Set>
+                <!--<Set name="url">jdbc:oracle:thin:demo/demo@localhost:1521:xe</Set>-->
                 <Set name="maxActive">5</Set>
                 <Set name="maxIdle">5</Set>
                 <Set name="defaultAutoCommit">true</Set>
