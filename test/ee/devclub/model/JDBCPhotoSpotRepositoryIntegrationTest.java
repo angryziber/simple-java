@@ -5,26 +5,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class JDBCPhotoSpotRepositoryIntegrationTest {
-    DataSource dataSource;
     Connection conn;
     JDBCPhotoSpotRepository repo = new JDBCPhotoSpotRepository();
 
     @Before
     public void initMockDB() throws Exception {
-        dataSource = new DriverManagerDataSource("jdbc:h2:mem:test", "sa", "sa");
-        conn = dataSource.getConnection();
+        repo.dataSource = new DriverManagerDataSource("jdbc:h2:mem:test", "sa", "sa");
+        conn = repo.dataSource.getConnection();
 
         conn.createStatement().execute("create table PhotoSpot (id int auto_increment primary key, name varchar, description varchar, latitude float, longitude float)");
-
-        repo.dataSource = dataSource;
     }
 
     @After
