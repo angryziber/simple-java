@@ -12,9 +12,9 @@ import java.util.List;
 @Produces("application/json")
 public class PhotoSpotResource extends SpringAwareResource {
     @Autowired PhotoSpotRepository repo;
-  int maxSpots = 1000;
+    int maxSpots = 1000;
 
-  @GET
+    @GET
     public List<PhotoSpot> getAllSpots() {
       List<PhotoSpot> allSpots = repo.getAllSpots();
       return allSpots.subList(0, Math.min(maxSpots, allSpots.size()));

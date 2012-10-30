@@ -7,10 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import static java.util.Collections.nCopies;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static java.util.Collections.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class PhotoSpotResourceTest {
@@ -21,16 +20,16 @@ public class PhotoSpotResourceTest {
         resource.repo = mock(PhotoSpotRepository.class, RETURNS_DEEP_STUBS);
     }
 
-  @Test
-  public void resourceLimitedNumberOfSpotsInRepo() throws Exception {
-    resource.maxSpots = 10;
-    PhotoSpot photoSpot = mock(PhotoSpot.class);
-    when(resource.repo.getAllSpots()).thenReturn(nCopies(15, photoSpot));
+    @Test
+    public void resourceLimitedNumberOfSpotsInRepo() throws Exception {
+        resource.maxSpots = 10;
+        PhotoSpot photoSpot = mock(PhotoSpot.class);
+        when(resource.repo.getAllSpots()).thenReturn(nCopies(15, photoSpot));
 
-    assertEquals(10, resource.getAllSpots().size());
-  }
+        assertEquals(10, resource.getAllSpots().size());
+    }
 
-  @Test
+    @Test
     public void newPhotoSpotsArePersisted() throws Exception {
         resource.newPhotoSpot("Aegna island", "WWI defence structures", 59.583771f, 24.749720f);
 
