@@ -17,6 +17,16 @@
         <filter-class>ee.devclub.web.RequestLogFilter</filter-class>
     </filter>
 
+    <filter>
+        <filter-name>auth</filter-name>
+        <filter-class>ee.devclub.web.AuthFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>auth</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <filter-mapping>
         <filter-name>RequestLogFilter</filter-name>
         <url-pattern>/*</url-pattern>
