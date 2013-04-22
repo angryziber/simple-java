@@ -1,5 +1,6 @@
-out
-logs
-lib
-*.iml
-.idea
+/out
+/logs
+/lib
+/*.iml
+/.idea
+/.*.db
