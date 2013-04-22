@@ -45,7 +45,7 @@
             function editSpot(spot) {
                 function option(value, name) { return {value: value, name: name} }
                 var form = $('#editTemplate').tmpl(spot);
-                infoWindow.content = form.html();
+                infoWindow.setContent(form.html());
                 infoWindow.open(map, spot.marker);
             }
 
