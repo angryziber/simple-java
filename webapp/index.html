@@ -9,26 +9,26 @@
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript" src="common.js"></script>
         <script type="text/javascript">
-            var infoWindow = new google.maps.InfoWindow();
-            var geocoder = new google.maps.Geocoder();
-            google.maps.event.addListener(infoWindow, 'closeclick', removeStaleMarker);
-            var lastMarker;
+            var map, infoWindow, geocoder, lastMarker;
 
             $(function() {
-                $('#content').height($(document).height() - $('#header').outerHeight());
-                detectLocation(locationCallback);
+                initMap();
+                detectLocation(function(location) {
+                    map.setCenter(new google.maps.LatLng(location.coords.latitude, location.coords.longitude));
+                });
             });
 
-            function locationCallback(location) {
-                var latLng = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+            function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    center: latLng,
+                    center: new google.maps.LatLng(59, 25),
                     zoom: 10
                 });
+                infoWindow = new google.maps.InfoWindow();
+                geocoder = new google.maps.Geocoder();
 
                 $.get('/rest/photo-spots', function(spots) {
-                    for (var i in spots) {
+                    for (var i = 0; i < spots.length; i++) {
                         addMarker(spots[i]);
                     }
                 });
@@ -36,6 +36,8 @@
                 google.maps.event.addListener(map, 'click', function(event) {
                     showNewSpotForm(event.latLng);
                 });
+
+                google.maps.event.addListener(infoWindow, 'closeclick', removeStaleMarker);
             }
 
             function addMarker(spot) {
@@ -77,8 +79,8 @@
                 if (lastMarker) lastMarker.setMap(null);
             }
 
-            function toLatLng(hub) {
-                return new google.maps.LatLng(hub.location.latitude, hub.location.longitude);
+            function toLatLng(spot) {
+                return new google.maps.LatLng(spot.location.latitude, spot.location.longitude);
             }
         </script>
     </head>
