@@ -19,10 +19,9 @@
             });
 
             function initMap() {
-                var latLng = new google.maps.LatLng(59, 22);
                 map = new google.maps.Map(document.getElementById('map'), {
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    center: latLng,
+                    center: new google.maps.LatLng(59, 25),
                     zoom: 10
                 });
                 infoWindow = new google.maps.InfoWindow();
