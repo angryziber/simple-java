@@ -15,12 +15,14 @@
             var lastMarker;
 
             $(function() {
-                $('#content').height($(document).height() - $('#header').outerHeight());
-                detectLocation(locationCallback);
+                initMap();
+                detectLocation(function(location) {
+                    map.setCenter(new google.maps.LatLng(location.coords.latitude, location.coords.longitude));
+                });
             });
 
-            function locationCallback(location) {
-                var latLng = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+            function initMap() {
+                var latLng = new google.maps.LatLng(59, 22);
                 map = new google.maps.Map(document.getElementById('map'), {
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     center: latLng,
@@ -28,7 +30,7 @@
                 });
 
                 $.get('/rest/photo-spots', function(spots) {
-                    for (var i in spots) {
+                    for (var i = 0; i < spots.length; i++) {
                         addMarker(spots[i]);
                     }
                 });
@@ -77,8 +79,8 @@
                 if (lastMarker) lastMarker.setMap(null);
             }
 
-            function toLatLng(hub) {
-                return new google.maps.LatLng(hub.location.latitude, hub.location.longitude);
+            function toLatLng(spot) {
+                return new google.maps.LatLng(spot.location.latitude, spot.location.longitude);
             }
         </script>
     </head>
