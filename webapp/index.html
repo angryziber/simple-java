@@ -36,20 +36,20 @@
         <script type="text/javascript">
             var infoWindow = new google.maps.InfoWindow();
             $(function() {
-                detectLocation(locationCallback);
+                initMap();
+                detectLocation();
             });
 
-            function detectLocation(callback) {
+            function detectLocation() {
                 navigator.geolocation.getCurrentPosition(
-                    callback,
-                    function(error) {
-                        alert('geolocation failed: ' + error.code);
+                    function(location) {
+                        map.setCenter(new google.maps.LatLng(location.coords.latitude, location.coords.longitude));
                     }
                 );
             }
 
-            function locationCallback(location) {
-                var latLng = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+            function initMap() {
+                var latLng = new google.maps.LatLng(59, 22);
                 map = new google.maps.Map(document.getElementById('map'), {
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     center: latLng,
@@ -57,8 +57,8 @@
                 });
             }
 
-            function toLatLng(hub) {
-                return new google.maps.LatLng(hub.location.latitude, hub.location.longitude);
+            function toLatLng(point) {
+                return new google.maps.LatLng(point.location.latitude, point.location.longitude);
             }
         </script>
     </head>
