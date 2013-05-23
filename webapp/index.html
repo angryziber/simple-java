@@ -10,12 +10,14 @@
         <script type="text/javascript">
             var infoWindow = new google.maps.InfoWindow();
             $(function() {
-                $('#content').height($(document).height() - $('#header').outerHeight());
-                detectLocation(locationCallback);
+                initMap();
+                detectLocation(function(location) {
+                    map.setCenter(new google.maps.LatLng(location.coords.latitude, location.coords.longitude));
+                });
             });
 
-            function locationCallback(location) {
-                var latLng = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+            function initMap() {
+                var latLng = new google.maps.LatLng(59, 22);
                 map = new google.maps.Map(document.getElementById('map'), {
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     center: latLng,
@@ -33,8 +35,8 @@
                 spot.marker = new google.maps.Marker({position: toLatLng(spot), map: map, title: spot.name});
             }
 
-            function toLatLng(hub) {
-                return new google.maps.LatLng(hub.location.latitude, hub.location.longitude);
+            function toLatLng(spot) {
+                return new google.maps.LatLng(spot.location.latitude, spot.location.longitude);
             }
         </script>
     </head>
