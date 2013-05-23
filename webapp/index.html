@@ -25,7 +25,7 @@
                 });
 
                 $.get('/rest/photo-spots', function(spots) {
-                    for (var i in spots) {
+                    for (var i = 0; i < spots.length; i++) {
                         addMarker(spots[i]);
                     }
                 });
