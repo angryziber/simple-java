@@ -10,9 +10,6 @@ $(function() {
 
 function detectLocation(callback) {
     navigator.geolocation.getCurrentPosition(
-        callback,
-        function(error) {
-            alert('geolocation failed: ' + error.code);
-        }
+        callback
     );
 }
